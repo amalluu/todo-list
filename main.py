@@ -27,16 +27,16 @@ def main():
             taskno=int(input("How many tasks you want to add:"))
             for task in range(taskno):
                 task = input(" enter task:")
-                tasks.append(task)
+                tasks.append({"task": task, "done": False})
             save_tasks(tasks)
-            print("tasks added!")
+            print("task/s added!")
         elif choice == "2":
             if not tasks:
                 print("no tasks in here")
             else:
                 print("\nTasks:")
                 for i, task in enumerate (tasks,start= 1):
-                    print(f"{i}.{task}")
+                    print(i, task["task"]["done"])
 
         elif choice == "3":
             index =int(input("which task to delete:")) - 1
