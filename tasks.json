@@ -1,5 +1,1 @@
-[
-  "ads",
-  "bts",
-  "ets"
-]
+[]os.path.abspath("tasks.json")
