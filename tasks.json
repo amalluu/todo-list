@@ -1,12 +1,27 @@
 [
   {
-    "task": "run",
+    "task": "RUN",
     "done": false,
     "created_at": "2025-07-18 16:20:10"
   },
   {
-    "task": "sit",
+    "task": "SLEEP",
     "done": false,
     "created_at": "2025-07-18 16:20:12"
+  },
+  {
+    "task": "go",
+    "done": false,
+    "created_at": "2025-07-19 22:47:24"
+  },
+  {
+    "task": "JUMP",
+    "done": true,
+    "created_at": "2025-07-19 22:47:27"
+  },
+  {
+    "task": "SIT",
+    "done": false,
+    "created_at": "2025-07-19 22:47:38"
   }
 ]

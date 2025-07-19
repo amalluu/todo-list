@@ -11,7 +11,9 @@ def save_tasks(tasks):
     with open("tasks.json","w") as f:
         json.dump(tasks,f,indent=2)
 
-
+def display_tasks(tasks):
+    for i, task in enumerate(tasks, start=1):
+        print(i, task['task'], "-", "✅" if task['done'] else "❌")
 
 
 def main():
@@ -22,7 +24,9 @@ def main():
         print("2. Show Tasks")
         print("3. Delete a Task")
         print("4. Mark Task as Completed")
-        print("5. EXIT")
+        print("5. Edit a Task")
+       
+        print("6. EXIT")
         choice = input("Enter your choice:")
 
         if choice=="1":
@@ -61,22 +65,48 @@ def main():
                 print("No tasks to mark.")
             else:
                 print("\nTasks:")
-                for i, task in enumerate(tasks, start=1):
-                    print(i, task['task'], "-", "✅" if task['done'] else "❌")
+                display_tasks(tasks)    
                 try:
-                    index = int(input("Enter the number of the task to mark as completed: ")) - 1
+                    index = int(input("Enter the number of the task to mark as completed/incomplete: ")) - 1
                     if 0 <= index < len(tasks):
-                        tasks[index]['done'] = True
+                        tasks[index]['done'] = not tasks[index]['done']
                         save_tasks(tasks)
-                        print(f"Marked '{tasks[index]['task']}' as completed ✅")
+                        if tasks[index]['done']:
+                            print(f"Marked '{tasks[index]['task']}' as completed ✅")
+                        else:
+                            print(f"Marked '{tasks[index]['task']}' as incomplete ❌")
+                           
                     else:
                         print ("Invalid task number.")
                 except ValueError:
                         print(f"Please enter a valid number.")
 
         elif choice =="5":
+            if not tasks:
+                print("No tasks to edit.")
+            else:
+                print("\nTasks:")
+                display_tasks(tasks)
+                try:
+
+                    index=int(input("Which task to edit, Give the number: "))-1
+                    if 0 <= index < len(tasks):
+                
+            
+                        to_edit = input("What's the new task description? ")
+                        hey = tasks[index]['task']
+                        tasks[index]['task'] = to_edit
+                        save_tasks(tasks)
+                        print("Edited", hey, "to", to_edit)
+                    else:
+                        print("Invalid choice")
+                except ValueError:
+                        print("Please enter a valid number.")
+
+        elif choice =="6":
             print("exiting..")
             break   
         else:
             print("choice is invalid")   
 main()
+
