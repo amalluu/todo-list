@@ -1,15 +1,15 @@
 import json
-import os
+import os #To check if the file exists (os.path.exists)
 from datetime import datetime
 
 def load_tasks():
     if os.path.exists("tasks.json"):
         with open("tasks.json","r") as f:
             return json.load(f)
-    return []
+    return [] #If the file not exists, it returns an empty list (meaning no saved tasks yet).
 def save_tasks(tasks):
     with open("tasks.json","w") as f:
-        json.dump(tasks,f,indent=2)
+        json.dump(tasks,f,indent=2) #Saves the tasks list back into the tasks.json file 
 
 def display_tasks(tasks):
     for i, task in enumerate(tasks, start=1):
@@ -34,7 +34,7 @@ def main():
             for t in range(taskno):
                 task = input(" enter task:")
                 current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                tasks.append({"task": task, "done": False,"created_at": current_time})
+                tasks.append({"task": task, "done": False,"created_at": current_time}) #append to tasks - the new tasks and their default status as not completed(done = false)
             save_tasks(tasks)
             print("task(s) added!")
         elif choice == "2":
